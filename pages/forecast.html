@@ -1,1 +1,29 @@
-<h2>{{ city }}</h2>
+<h2>Forecast for {{ city }}</h2>
+<br />
+<div class="days-select">
+    <h5>Days to show</h5>
+    <label class="radio-inline" ng-repeat="num in [1,2,3,4,5,6,7,8,9,10]">
+        <input type="radio" name="inlineRadioOptions" id="inlineRadio1" active="true" value="{{num}}" ng-checked="isChecked(num)" ng-click="showDays(num)"><label for="{{num}}" ng-click="showDays(num)">{{num}}</label>
+    </label>
+</div>
+<br /><br />
+<div class="daily-forecast" ng-repeat="day in results">
+    <div class="row-fluid">
+        <div class="col-md-4">
+            <div class="panel panel-default bootcards-media">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{ convertDate(day.dt) | date: 'EEE d MMM' }}</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="desc"><strong>Forecast: </strong>{{ day.weather[0].main }}</div>
+                    <div class="temp"><strong>High: </strong>{{ convertToCelcius(day.temp.max) }}</div>
+                    <div class="temp"><strong>Low: </strong>{{ convertToCelcius(day.temp.min) }}</div>
+                </div>
+                <!--<img src="http://www.teamstudio.com/Portals/218295/images/istock_000001242290small.jpg" class="img-responsive"/>-->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
