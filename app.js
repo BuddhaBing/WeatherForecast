@@ -84,12 +84,12 @@
     weatherForecast.service('weatherService', function($http) {
         var service = {};
         service.getForecast = function(params) { 
-                return $http({
-                    url: 'http://api.openweathermap.org/data/2.5/forecast/daily', 
-                    method: "GET",
-                    params: params
-                })
-            }
+            return $http({
+                url: 'http://api.openweathermap.org/data/2.5/forecast/daily', 
+                method: "GET",
+                params: params
+            })
+        }
         return service;
     });
 
@@ -102,6 +102,20 @@
             },
             getCity: function() {
                 return city;
+            }
+        }
+    });
+
+    weatherForecast.directive('forecastPanel', function() {
+        return {
+            restrict: 'E',
+            templateUrl: 'directives/daily-forecast.html',
+            replace: true,
+            scope: {
+                day: "=",
+                convertDate: "&",
+                convertToCelcius: "&",
+                convertToFarenheit: "&"
             }
         }
     });

@@ -10,17 +10,7 @@
 <div class="daily-forecast" ng-repeat="day in results">
     <div class="row-fluid">
         <div class="col-md-4">
-            <div class="panel panel-default bootcards-media">
-                <div class="panel-heading">
-                    <h3 class="panel-title">{{ convertDate(day.dt) | date: 'EEE d MMM' }}</h3>
-                </div>
-                <div class="panel-body">
-                    <div class="desc"><strong>Forecast: </strong>{{ day.weather[0].main }}</div>
-                    <div class="temp"><strong>High: </strong>{{ convertToCelcius(day.temp.max) }}</div>
-                    <div class="temp"><strong>Low: </strong>{{ convertToCelcius(day.temp.min) }}</div>
-                </div>
-                <!--<img src="http://www.teamstudio.com/Portals/218295/images/istock_000001242290small.jpg" class="img-responsive"/>-->
-            </div>
+            <forecast-panel day="day" convert-date="convertDate(date)" convert-to-celcius="convertToCelcius(temp)"convert-to-celcius="convertToCelcius(temp)" convert-to-farenheit="convertToFarenheit(temp)"></forecast-panel>
         </div>
     </div>
 </div>
