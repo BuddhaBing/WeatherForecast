@@ -1,3 +1,18 @@
 .wi {
     font-size: 5rem;
 }
+.margin-top {
+    margin-top: 2em;
+}
+.icon-pad {
+    padding: 1rem;
+}
+.navbar-primary {
+    background-color: #428bca;
+    border-color: #428bca;
+}
+.navbar-primary a {
+    color: #ffffff;
+    text-shadow: 0 0 1px #666;
+    text-decoration: none;
+}

@@ -8,7 +8,7 @@
             scope: {
                 day: "=",
                 convertDate: "&",
-                kelvinToCelcius: "&",
+                kelvinToCelsius: "&",
                 kelvinToFarenheit: "&",
                 convertKelvin: "&",
                 degrees: "="

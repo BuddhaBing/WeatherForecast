@@ -12,6 +12,8 @@
         $scope.city = cityService.getCity();
         $scope.conversionService = conversionService;
         $scope.weatherResult = JSON.parse(localStorage.getItem('forecast'));
+        $scope.degrees = $routeParams.format[0];
+        $scope.unitsOfMeasurement = ['Celsius', 'Farenheit']
 
         var trimArray = function() {
             $scope.results = $scope.weatherResult;
@@ -31,12 +33,6 @@
             });
         }
 
-        $scope.setDegrees = function() {
-            return ($routeParams.format === "Farenheit") ? "F" : "C";
-        }
-
-        $scope.degrees = $scope.setDegrees();
-
         trimArray();
 
         $scope.showDays = function(num) {
@@ -47,8 +43,8 @@
             return num === $routeParams.numberOfDays;
         }
 
-        $scope.tempFormat = function(format) {
-            return format === $routeParams.format;
+        $scope.checkTempFormat = function(format) {
+            return format == $routeParams.format;
         }
 
         $scope.changeFormat = function(format) {

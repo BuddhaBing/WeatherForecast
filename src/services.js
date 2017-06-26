@@ -40,7 +40,7 @@
             return Math.round((1.8 * (degK - 273)) + 32);
         }
         
-        service.kelvinToCelcius = function(degK) {
+        service.kelvinToCelsius = function(degK) {
             return Math.round(degK - 273);
         }
 

@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-md-6 col-md-offset-3">
+    <div class="col-md-6 col-md-offset-3 text-center">
         <h4>Forecast by City</h4>
         <form class="form-inline" ng-submit="setCity()">
             <div class="form-group">
@@ -7,5 +7,10 @@
                 <input class="btn btn-primary" type="submit" value="Get Forecast">
             </div>
         </form>
+    </div>
+</div>
+<div class="row margin-top">
+    <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+        <i class="wi wi-day-{{condition}} icon-pad" ng-repeat="condition in ['sunny', 'clouds', 'rain', 'snow']"></i>
     </div>
 </div>

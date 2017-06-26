@@ -12,8 +12,8 @@
     <div class="temp-select col-md-6">
         <h5>Show temperature in</h5>
         <form>
-            <label class="radio-inline" ng-repeat="format in ['Celcius','Farenheit']">
-                <input type="radio" name="inlineRadioOptions" id="radio-{{format}}" active="true" value="{{format}}" ng-checked="tempFormat(format)" ng-click="changeFormat(format)"><label for="{{format}}" ng-click="changeFormat(format)">{{format}}</label>
+            <label class="radio-inline" ng-repeat="format in unitsOfMeasurement">
+                <input type="radio" name="inlineRadioOptions" id="radio-{{format}}" active="true" value="{{format}}" ng-checked="checkTempFormat(format)" ng-click="changeFormat(format)"><label for="{{format}}" ng-click="changeFormat(format)">{{format}}</label>
             </label>
         </form>
     </div>
@@ -22,7 +22,7 @@
 <div class="daily-forecast" ng-repeat="day in results">
     <div class="row-fluid">
         <div class="col-md-4">
-            <forecast-panel day="day" degrees="degrees" convert-date="conversionService.convertDate(date)" kelvin-to-celcius="conversionService.kelvinToCelcius(temp)" convert-to-celcius="conversionService.kelvinToCelcius(temp)" kelvin-to-farenheit="conversionService.kelvinToFarenheit(temp)" convert-kelvin="conversionService.convertKelvin(temp)"></forecast-panel>
+            <forecast-panel day="day" degrees="degrees" convert-date="conversionService.convertDate(date)" kelvin-to-celsius="conversionService.kelvinToCelsius(temp)" convert-to-celsius="conversionService.kelvinToCelsius(temp)" kelvin-to-farenheit="conversionService.kelvinToFarenheit(temp)" convert-kelvin="conversionService.convertKelvin(temp)"></forecast-panel>
         </div>
     </div>
 </div>
