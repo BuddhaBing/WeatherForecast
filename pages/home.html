@@ -1,10 +1,10 @@
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
         <h4>Forecast by City</h4>
-        <form class="form-inline">
+        <form class="form-inline" ng-submit="setCity()">
             <div class="form-group">
                 <input type="text" class="form-control" ng-model="city">
-                <input class="btn btn-primary" type="submit" ng-click="setCity()" value="Get Forecast">
+                <input class="btn btn-primary" type="submit" value="Get Forecast">
             </div>
         </form>
     </div>

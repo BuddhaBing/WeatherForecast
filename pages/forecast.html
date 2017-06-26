@@ -1,19 +1,28 @@
 <h2>Forecast for {{ city }}</h2>
 <br />
-<div class="days-select">
-    <h5>Days to show</h5>
-    <label class="radio-inline" ng-repeat="num in [1,2,3,4,5,6,7,8,9,10]">
-        <input type="radio" name="inlineRadioOptions" id="inlineRadio1" active="true" value="{{num}}" ng-checked="isChecked(num)" ng-click="showDays(num)"><label for="{{num}}" ng-click="showDays(num)">{{num}}</label>
-    </label>
+<div class="row">
+    <div class="days-select col-md-6">
+        <h5>Days to show</h5>
+        <form>
+            <label class="radio-inline" ng-repeat="num in ['1','2','3','4','5','6','7','8','9','10']">
+                <input type="radio" name="inlineRadioOptions" id="radio-{{num}}" active="true" value="{{num}}" ng-checked="isChecked(num)" ng-click="showDays(num)"><label for="{{num}}" ng-click="showDays(num)">{{num}}</label>
+            </label>    
+        </form>
+    </div>
+    <div class="temp-select col-md-6">
+        <h5>Show temperature in</h5>
+        <form>
+            <label class="radio-inline" ng-repeat="format in ['Celcius','Farenheit']">
+                <input type="radio" name="inlineRadioOptions" id="radio-{{format}}" active="true" value="{{format}}" ng-checked="tempFormat(format)" ng-click="changeFormat(format)"><label for="{{format}}" ng-click="changeFormat(format)">{{format}}</label>
+            </label>
+        </form>
+    </div>
 </div>
 <br /><br />
 <div class="daily-forecast" ng-repeat="day in results">
     <div class="row-fluid">
         <div class="col-md-4">
-            <forecast-panel day="day" convert-date="convertDate(date)" convert-to-celcius="convertToCelcius(temp)"convert-to-celcius="convertToCelcius(temp)" convert-to-farenheit="convertToFarenheit(temp)"></forecast-panel>
+            <forecast-panel day="day" degrees="degrees" convert-date="conversionService.convertDate(date)" kelvin-to-celcius="conversionService.kelvinToCelcius(temp)" convert-to-celcius="conversionService.kelvinToCelcius(temp)" kelvin-to-farenheit="conversionService.kelvinToFarenheit(temp)" convert-kelvin="conversionService.convertKelvin(temp)"></forecast-panel>
         </div>
     </div>
 </div>
-
-
-

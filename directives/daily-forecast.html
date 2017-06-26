@@ -1,10 +1,10 @@
 <div class="panel panel-default bootcards-media">
     <div class="panel-heading">
-        <h3 class="panel-title">{{ convertDate({ date: day.dt }) | date: 'EEE d MMM' }}</h3>
+        <h3 class="panel-title">{{ convertDate({date: day.dt}) | date: 'EEE d MMM' }}</h3>
     </div>
     <div class="panel-body">
         <div class="desc"><strong>Forecast: </strong>{{ day.weather[0].main }}</div>
-        <div class="temp"><strong>High: </strong>{{ convertToCelcius({ temp: day.temp.max }) }}</div>
-        <div class="temp"><strong>Low: </strong>{{ convertToCelcius({ temp: day.temp.min }) }}</div>
+        <div class="temp"><strong>High: </strong>{{ convertKelvin({temp: day.temp.max}) }}&deg;<span ng-bind="degrees"></span></div>
+        <div class="temp"><strong>Low: </strong>{{ convertKelvin({temp: day.temp.min}) }}&deg;<span ng-bind="degrees"></span></div>
     </div>
 </div>
