@@ -1,10 +1,13 @@
-<div class="panel panel-default bootcards-media">
+<div class="panel panel-primary bootcards-media">
     <div class="panel-heading">
         <h3 class="panel-title">{{ convertDate({date: day.dt}) | date: 'EEE d MMM' }}</h3>
     </div>
     <div class="panel-body">
-        <div class="desc"><strong>Forecast: </strong>{{ day.weather[0].main }}</div>
-        <div class="temp"><strong>High: </strong>{{ convertKelvin({temp: day.temp.max}) }}&deg;<span ng-bind="degrees"></span></div>
-        <div class="temp"><strong>Low: </strong>{{ convertKelvin({temp: day.temp.min}) }}&deg;<span ng-bind="degrees"></span></div>
+        <div class="col-md-6 col-sm-6 col-xs-6">
+            <div class="condition"><strong>Forecast: </strong>{{ day.weather[0].main }}</div>
+            <div class="temp"><strong>High: </strong>{{ convertKelvin({temp: day.temp.max}) }}&deg;<span ng-bind="degrees"></span></div>
+            <div class="temp"><strong>Low: </strong>{{ convertKelvin({temp: day.temp.min}) }}&deg;<span ng-bind="degrees"></span></div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-6 text-center"><i class="wi wi-day-{{ day.weather[0].main.toLowerCase() }}"></i></div>
     </div>
 </div>
