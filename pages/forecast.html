@@ -1,4 +1,10 @@
-<h2>Forecast for {{ city }}</h2>
+<div class="matching-city" ng-if="isMatchingCity()">
+    <h2>Forecast for {{ foundCity }}</h2>
+</div>
+<div class="no-matching-city" ng-if="!isMatchingCity()">
+    <h2>No results for {{ city }}</h2>
+    <h3>Showing results instead for {{ foundCity }}</h3>
+</div>
 <br />
 <div class="row">
     <div class="days-select col-md-6">

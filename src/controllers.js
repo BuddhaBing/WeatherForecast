@@ -1,15 +1,22 @@
 (function() {
     
-    weatherForecast.controller('homeController', ['$scope', '$location', 'cityService', function($scope, $location, cityService) {
+    weatherForecast.controller('homeController', ['$scope', '$location', 'cityService', 'weatherService', 'errorService', function($scope, $location, cityService, weatherService, errorService) {
         $scope.city = "";
+        $scope.$watch('error');
+        
         $scope.setCity = function() {
-            cityService.setCity($scope.city);
-            $location.path( '/forecast/days/10/Celsius' );
+            cityService.setCity($scope.city, weatherService.getForecast($scope.city)
+                .then(function(res) {
+                    if (res) return $location.path( '/forecast/days/10/Celsius' );
+                    $scope.error = errorService.error;
+                })
+            );
         };
     }]);
     
-    weatherForecast.controller('forecastController', ['$scope', '$resource', '$location', '$routeParams', 'weatherService', 'cityService', 'conversionService', function($scope, $resource, $location, $routeParams, weatherService, cityService, conversionService) {
+    weatherForecast.controller('forecastController', ['$scope', '$resource', '$location', '$routeParams', 'weatherService', 'cityService', 'conversionService', 'errorService', function($scope, $resource, $location, $routeParams, weatherService, cityService, conversionService, errorService) {
         $scope.city = cityService.getCity();
+        $scope.foundCity = weatherService.weatherResult.city;
         $scope.conversionService = conversionService;
         $scope.weatherResult = JSON.parse(localStorage.getItem('forecast'));
         $scope.degrees = $routeParams.format[0];
@@ -17,23 +24,18 @@
 
         var trimArray = function() {
             $scope.results = $scope.weatherResult;
-            var days = $routeParams.numberOfDays
+            var days = $routeParams.numberOfDays;
             var toDelete = ($scope.weatherResult.length) - (days - 1);
             $scope.results.splice(days, toDelete);
         }
 
-        if( !$scope.weatherResult || weatherService.isWeatherExpired()) {
-            weatherService.getForecast({ q: $scope.city, cnt: 10, APPID: 'eb9c8de257842ab82905633450634394' }).then(function(result) {
-                $scope.weatherResult = result.data.list;
-                var oneDay = new Date();
-                oneDay.setHours(0,0,0,0);
-                oneDay.setHours(oneDay.getHours() + 24);
-                localStorage.setItem('expires', oneDay);
-                localStorage.setItem('forecast', JSON.stringify($scope.weatherResult));
-            });
+        if( !$scope.weatherResult || weatherService.isWeatherExpired($scope.city)) {
+            weatherService.getForecast($scope.city).then(
+                function(result) {
+                    $scope.weatherResult = result.data.list;
+                }
+            );
         }
-
-        trimArray();
 
         $scope.showDays = function(num) {
             $location.path( '/forecast/days/' + num + '/' + $routeParams.format);
@@ -50,6 +52,12 @@
         $scope.changeFormat = function(format) {
             $location.path( '/forecast/days/' + $routeParams.numberOfDays + '/' + format);
         }
+
+        $scope.isMatchingCity = function() {
+            return weatherService.weatherResult.city.includes($scope.city);
+        }
+
+        trimArray();
         
     }]);
 
