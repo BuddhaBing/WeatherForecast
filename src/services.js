@@ -53,6 +53,14 @@
             return city != prevSearchedCity || new Date(expiryDate) <= new Date(today);
         }
 
+        service.isMatchingCity = function(city) {
+            if (this.weatherResult.city) {
+                var searchedCity = city.toLowerCase();
+                var foundCity = this.weatherResult.city.toLowerCase();
+                return foundCity.includes(searchedCity);
+            }
+        }
+
         return service;
     }]);
 

@@ -33,3 +33,11 @@
 .fade.ng-leave.ng-leave-active {
   opacity:0;
 }
+body {
+    background: url(/public/images/sky.jpg);
+    background-size: cover;
+}
+h2, .h2 {
+    font-size: 30px;
+    text-shadow: 0 0 1px #999;
+}
