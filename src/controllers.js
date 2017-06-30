@@ -1,6 +1,6 @@
 (function() {
     
-    weatherForecast.controller('homeController', ['$scope', '$location', 'cityService', 'weatherService', 'errorService', function($scope, $location, cityService, weatherService, errorService) {
+    weatherForecast.controller('HomeController', ['$scope', '$location', 'cityService', 'weatherService', 'errorService', function($scope, $location, cityService, weatherService, errorService) {
         $scope.city = "";
         $scope.$watch('error');
         
@@ -14,11 +14,10 @@
         };
     }]);
     
-    weatherForecast.controller('forecastController', ['$scope', '$resource', '$location', '$routeParams', 'weatherService', 'cityService', 'conversionService', 'errorService', function($scope, $resource, $location, $routeParams, weatherService, cityService, conversionService, errorService) {
+    weatherForecast.controller('ForecastController', ['$scope', '$resource', '$location', '$routeParams', 'weatherService', 'cityService', 'errorService', function($scope, $resource, $location, $routeParams, weatherService, cityService, errorService) {
 
         $scope.city = cityService.getCity();
         $scope.foundCity = weatherService.weatherResult.city;
-        $scope.conversionService = conversionService;
         $scope.weatherResult = JSON.parse(localStorage.getItem('forecast'));
         $scope.degrees = $routeParams.format[0];
         $scope.unitsOfMeasurement = ['Celsius', 'Farenheit'];

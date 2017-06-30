@@ -4,19 +4,19 @@
         $routeProvider
             .when('/forecast', {
                 templateUrl: 'pages/forecast.html',
-                controller: 'forecastController'
+                controller: 'ForecastController'
             })
             .when('/forecast/days/:numberOfDays', {
                 templateUrl: 'pages/forecast.html',
-                controller: 'forecastController'
+                controller: 'ForecastController'
             })
             .when('/forecast/days/:numberOfDays/:format', {
                 templateUrl: 'pages/forecast.html',
-                controller: 'forecastController'
+                controller: 'ForecastController'
             })
             .otherwise({
                 templateUrl: 'pages/home.html',
-                controller: 'homeController'
+                controller: 'HomeController'
             })
 
     });

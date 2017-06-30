@@ -64,30 +64,6 @@
         return service;
     }]);
 
-    weatherForecast.service('conversionService', ['$http', '$routeParams', function($http, $routeParams) {
-        var service = {};
-        
-        service.kelvinToFarenheit = function(degK) {
-            return Math.round((1.8 * (degK - 273)) + 32);
-        }
-        
-        service.kelvinToCelsius = function(degK) {
-            return Math.round(degK - 273);
-        }
-
-        service.convertDate = function(dt) {
-            return new Date(dt * 1000);
-        }
-
-        service.convertKelvin = function(degK) {
-            if ($routeParams.format === "Farenheit")
-                return Math.round((1.8 * (degK - 273)) + 32);
-            return Math.round(degK - 273);
-        }
-
-        return service;
-    }]);
-
     weatherForecast.service('errorService', ['$location', function($location) {
         var service = {};
         service.errors = [];
